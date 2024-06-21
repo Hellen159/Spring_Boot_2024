@@ -1,37 +1,26 @@
 package io.github.Hellen159;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import io.github.Hellen159.domain.entity.Cliente;
+import io.github.Hellen159.domain.repository.Clientes;
 
 @SpringBootApplication
-@RestController
 public class VendasApplication {
-
-	@Value("${application.name}")
-	private String applicationName;
-	
-	@GetMapping("/hello")
-	public String helloWorld() {
-		return applicationName;
-	}
-	
-	@Autowired
-	@Qualifier("cachorro")
-	private Animal animal;
 	
 	@Bean
-	public CommandLineRunner executarAnimal() {
+	public CommandLineRunner testandoH2(@Autowired Clientes clientes) {
 		return args -> {
-			this.animal.fazerBarulho();
+			Cliente cliente = new Cliente();
+			cliente.setNome("Hellen");
+			clientes.salvar(cliente);
 		};
 	}
+	
 	
     public static void main(String[] args) {
         SpringApplication.run(VendasApplication.class, args);
