@@ -23,6 +23,19 @@ public class VendasApplication {
 			List<Cliente> todosClientes = clientes.obterTodos();
 			todosClientes.forEach(System.out::println);
 			
+			System.out.println("Atualizando clientes");
+			todosClientes.forEach( c ->{
+				c.setNome(c.getNome() + " atualizado !");
+				clientes.atualizar(c);
+			});
+			clientes.buscarPorNome("hell").forEach(System.out::println);
+			
+//			todosClientes.forEach( c ->{
+//				clientes.deletar(c.getId());
+//			});
+//			todosClientes = clientes.obterTodos();
+//			todosClientes.forEach(System.out::println);
+
 		};
 	}
 
